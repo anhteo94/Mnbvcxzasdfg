@@ -1,0 +1,312 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/Fluent-UI/main/ui"))()
+local Window = Library:CreateWindow({
+    Title = "ＰＨẠＭ ＮＧＨĨＡ 🍏 ＩＯＳ",
+    SubTitle = "Menu 13 Tab",
+    TabWidth = 120,
+    Size = UDim2.fromOffset(580, 400),
+    Acrylic = true,
+    Theme = "Dark",
+    Center = true,
+    Draggable = true,
+})
+
+-- Tạo 13 tab
+local Tabs = {
+    Infe = Window:AddTab({ Title = "Infe", Icon = "info-circle" }),
+    Fram = Window:AddTab({ Title = "Fram", Icon = "sword" }),
+    Other = Window:AddTab({ Title = "Other", Icon = "grid-2x2" }),
+    SeaEv = Window:AddTab({ Title = "Sea Ev", Icon = "anchor" }),
+    StackFram = Window:AddTab({ Title = "Stack Fram", Icon = "boxes" }),
+    Setting = Window:AddTab({ Title = "Setting", Icon = "settings" }),
+    Status = Window:AddTab({ Title = "Status", Icon = "activity" }),
+    Stats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-2" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "user" }),
+    Teleport = Window:AddTab({ Title = "Teleport", Icon = "navigation" }),
+    Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
+    Fruit = Window:AddTab({ Title = "Fruit", Icon = "apple" }),
+    Discord = Window:AddTab({ Title = "Discord", Icon = "message-circle" }),
+}
+
+-- Mẫu: Gắn nội dung thật vào tab Fram (bạn có thể tự thêm tiếp vào các tab còn lại)
+Tabs.Fram:AddSection("Auto Farm")
+Tabs.Fram:AddToggle({
+    Title = "Auto Farm Level",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoFarm = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoFarm.lua"))()
+    end,
+})
+Tabs.Fram:AddToggle({
+    Title = "Auto Bone",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoBone = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoBone.lua"))()
+    end,
+})
+
+-- Mẫu Discord Tab
+Tabs.Discord:AddSection("Kết nối")
+Tabs.Discord:AddButton({
+    Title = "Tham gia Discord Phạm Nghĩa 🍏",
+    Description = "Nhận update script, hỏi đáp hỗ trợ",
+    Callback = function()
+        setclipboard("https://discord.gg/yourdiscord")
+        Library:Notify("Đã copy link Discord vào clipboard")
+    end,
+})
+
+-- Nút tắt menu
+Library:Notify("Ấn phím RightControl để bật/tắt menu", 8)
+
+Tabs.Fram:AddToggle({
+    Title = "Auto Farm Level",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoFarmLevel = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoFarmLevel.lua"))()
+    end
+})
+
+Tabs.Fram:AddToggle({
+    Title = "Super Fast Attack",
+    Default = false,
+    Callback = function(v)
+        getgenv().SuperFastAttack = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/SuperFastAttack.lua"))()
+    end
+})
+
+Tabs.Fram:AddToggle({
+    Title = "Auto Next World",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoNextWorld = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoNextWorld.lua"))()
+    end
+})
+
+Tabs.Fram:AddToggle({
+    Title = "Auto Farm Bone",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoBone = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoBone.lua"))()
+    end
+})
+
+Tabs.SeaEv:AddToggle({
+    Title = "Auto Sea Event",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoSeaEvent = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoSeaEvent.lua"))()
+    end
+})
+
+Tabs.SeaEv:AddToggle({
+    Title = "Auto Kill Sea Beast",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoKillSeaBeast = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoKillSeaBeast.lua"))()
+    end
+})
+
+Tabs.Setting:AddButton({
+    Title = "Dọn Lag",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/OptimizeFPS.lua"))()
+    end
+})
+
+Tabs.Setting:AddButton({
+    Title = "Tắt Nhạc Nền",
+    Callback = function()
+        for _,v in pairs(game:GetDescendants()) do
+            if v:IsA("Sound") then v:Destroy() end
+        end
+    end
+})
+
+Tabs.Setting:AddButton({
+    Title = "Auto Rejoin khi kick",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoRejoin.lua"))()
+    end
+})
+
+Tabs.Teleport:AddButton({
+    Title = "Đến BOSS gần nhất",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/TeleportBoss.lua"))()
+    end
+})
+
+Tabs.Teleport:AddButton({
+    Title = "Đến Sea Beast",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/TeleportSeaBeast.lua"))()
+    end
+})
+
+Tabs["Trái Ác Quỷ"]:AddToggle({
+    Title = "Auto Tìm Trái Ác Quỷ",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoFindFruit = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoFindFruit.lua"))()
+    end
+})
+
+Tabs["Trái Ác Quỷ"]:AddToggle({
+    Title = "Auto Ăn Trái Ác Quỷ",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoEatFruit = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoEatFruit.lua"))()
+    end
+})
+
+Tabs["Tộc V4"]:AddToggle({
+    Title = "Auto Vào Clock",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoClock = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoClock.lua"))()
+    end
+})
+
+Tabs["Tộc V4"]:AddToggle({
+    Title = "Auto Mở Lever",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoLever = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoLever.lua"))()
+    end
+})
+
+Tabs["Tộc V4"]:AddButton({
+    Title = "Mua Gear (Cần đủ điều kiện)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoGear.lua"))()
+    end
+})
+
+Tabs["Người Chơi"]:AddToggle({
+    Title = "ESP Người Chơi",
+    Default = false,
+    Callback = function(v)
+        getgenv().ESPPlayers = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/ESPPlayer.lua"))()
+    end
+})
+
+Tabs["Người Chơi"]:AddToggle({
+    Title = "Aimbot PvP",
+    Default = false,
+    Callback = function(v)
+        getgenv().AimbotPvP = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/Aimbot.lua"))()
+    end
+})
+
+Tabs["Vật Phẩm"]:AddButton({
+    Title = "Up Race Drace V1 → V2",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/UpRaceV2.lua"))()
+    end
+})
+
+Tabs["Vật Phẩm"]:AddButton({
+    Title = "Up Race Drace V2 → V3",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/UpRaceV3.lua"))()
+    end
+})
+
+Tabs["Vật Phẩm"]:AddButton({
+    Title = "Đổi Trái (Random Fruit)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/RandomFruit.lua"))()
+    end
+})
+
+Tabs["Cửa Hàng"]:AddButton({
+    Title = "Mua Haki Quan Sát",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/BuyKen.lua"))()
+    end
+})
+
+Tabs["Cửa Hàng"]:AddButton({
+    Title = "Mua Buso (Haki Vũ Trang)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/BuyBuso.lua"))()
+    end
+})
+
+Tabs["Thị Giác"]:AddToggle({
+    Title = "ESP Trái Ác Quỷ",
+    Default = false,
+    Callback = function(v)
+        getgenv().ESPFruit = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/ESPFruit.lua"))()
+    end
+})
+
+Tabs["Thị Giác"]:AddToggle({
+    Title = "ESP Chest",
+    Default = false,
+    Callback = function(v)
+        getgenv().ESPChest = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/ESPChest.lua"))()
+    end
+})
+
+Tabs["Tập Kích"]:AddToggle({
+    Title = "Auto Kill Boss",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoKillBoss = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoKillBoss.lua"))()
+    end
+})
+
+Tabs["Tập Kích"]:AddToggle({
+    Title = "Auto Kill Người Chơi",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoKillPlayer = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoKillPlayer.lua"))()
+    end
+})
+
+Tabs["Di Chuyển"]:AddDropdown("Islands", {
+    Title = "Chọn đảo",
+    Values = {"Starter Island", "Jungle", "Marine", "Desert", "Sky Island"},
+    Multi = false,
+    Default = 1,
+}, function(selected)
+    getgenv().SelectedIsland = selected
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/TeleportIsland.lua"))()
+end)
+
+Tabs["Sự Kiện"]:AddToggle({
+    Title = "Auto Farm Sea Beast",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoSeaBeast = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoSeaBeast.lua"))()
+    end
+})
+
+Tabs["Sự Kiện"]:AddToggle({
+    Title = "Auto Săn Mythical",
+    Default = false,
+    Callback = function(v)
+        getgenv().AutoMythical = v
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PhamNghiaIos/BF/main/AutoMythical.lua"))()
+    end
+})
