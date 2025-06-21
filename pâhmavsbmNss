@@ -10,7 +10,6 @@ local Window = Library:CreateWindow({
     Draggable = true,
 })
 
--- Tạo 13 tab
 local Tabs = {
     Infe = Window:AddTab({ Title = "Infe", Icon = "info-circle" }),
     Fram = Window:AddTab({ Title = "Fram", Icon = "sword" }),
